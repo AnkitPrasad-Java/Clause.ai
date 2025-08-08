@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome | Clause.ai App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
+        50% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.6); }
+      }
+      .animate-float { animation: float 3s ease-in-out infinite; }
+      .animate-fadeInUp { animation: fadeInUp 0.8s ease-out forwards; }
+      .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+      .glass-effect {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .gradient-text {
+        background: linear-gradient(45deg, #fbbf24, #f59e0b, #d97706);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .hero-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+        z-index: 1;
+      }
+      .content-layer {
+        position: relative;
+        z-index: 2;
+      }
+    </style>
+  </head>
+  <body class="hero-bg text-white min-h-screen">
+    <!-- Floating particles -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none" style="z-index: 1;">
+      <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-white/20 rounded-full animate-float" style="animation-delay: 0s;"></div>
+      <div class="absolute top-1/3 right-1/4 w-1 h-1 bg-yellow-300/30 rounded-full animate-float" style="animation-delay: 1s;"></div>
+      <div class="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-white/15 rounded-full animate-float" style="animation-delay: 2s;"></div>
+      <div class="absolute top-1/2 right-1/3 w-1 h-1 bg-blue-300/25 rounded-full animate-float" style="animation-delay: 0.5s;"></div>
+    </div>
+
+    <!-- Navbar -->
+    <header class="content-layer">
+      <nav class="flex justify-between items-center p-6 max-w-7xl mx-auto">
+        <div class="flex items-center space-x-2 group">
+          <div class="w-8 h-8 bg-gradient-to-br from-yellow-300 to-orange-400 rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
+            <svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+              <path fill-rule="evenodd" d="M4 5a2 2 0 012-2v1a1 1 0 102 0V3h4v1a1 1 0 102 0V3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 102 0v2a1 1 0 11-2 0V9z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <h1 class="text-2xl font-bold tracking-wide">Clause.ai</h1>
+        </div>
+        <div class="hidden md:flex space-x-6">
+          <a href="#features" class="hover:text-yellow-300 transition-colors duration-300 relative group">
+            Features
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-300 group-hover:w-full transition-all duration-300"></span>
+          </a>
+          <a href="#pricing" class="hover:text-yellow-300 transition-colors duration-300 relative group">
+            Pricing
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-300 group-hover:w-full transition-all duration-300"></span>
+          </a>
+          <a href="#about" class="hover:text-yellow-300 transition-colors duration-300 relative group">
+            About
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-300 group-hover:w-full transition-all duration-300"></span>
+          </a>
+        </div>
+        <div class="flex items-center space-x-4">
+          <a href="index.html" class="hover:text-yellow-300 transition-colors duration-300 hidden sm:block">Login</a>
+          <a href="signup.html" class="glass-effect px-4 py-2 rounded-xl font-semibold hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+            Sign Up
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="content-layer flex flex-col-reverse lg:flex-row items-center justify-between max-w-7xl mx-auto px-6 py-12 lg:py-20 gap-12 min-h-[80vh]">
+      <!-- Text Content -->
+      <div class="max-w-2xl space-y-8 animate-fadeInUp">
+        <div class="space-y-6">
+          <h2 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+            Secure your legal workflows with 
+            <span class="gradient-text block mt-2">Clause.ai</span>
+          </h2>
+          <p class="text-xl text-white/90 leading-relaxed max-w-lg">
+            Transform your document management with AI-powered contract analysis, seamless collaboration, and enterprise-grade security.
+          </p>
+        </div>
+
+        <!-- Feature highlights -->
+        <div class="flex flex-wrap gap-4 text-sm">
+          <div class="glass-effect px-4 py-2 rounded-full flex items-center space-x-2">
+            <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            <span>AI-Powered Analysis</span>
+          </div>
+          <div class="glass-effect px-4 py-2 rounded-full flex items-center space-x-2">
+            <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+            <span>Real-time Collaboration</span>
+          </div>
+          <div class="glass-effect px-4 py-2 rounded-full flex items-center space-x-2">
+            <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+            <span>Bank-level Security</span>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 pt-4">
+          <a href="signup.html" class="group bg-gradient-to-r from-yellow-300 to-orange-400 text-black px-8 py-4 rounded-xl font-semibold hover:from-yellow-400 hover:to-orange-500 transition-all duration-300 transform hover:scale-105 animate-pulse-glow text-center">
+            <span class="flex items-center justify-center space-x-2">
+              <span>Start Free Trial</span>
+              <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </span>
+          </a>
+          <a href="index.html" class="group glass-effect px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition-all duration-300 transform hover:scale-105 text-center">
+            <span class="flex items-center justify-center space-x-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+              </svg>
+              <span>Login</span>
+            </span>
+          </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-8 pt-8 border-t border-white/20">
+          <div class="text-center">
+            <div class="text-3xl font-bold text-yellow-300">10K+</div>
+            <div class="text-sm text-white/70">Documents Processed</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-yellow-300">99.9%</div>
+            <div class="text-sm text-white/70">Uptime</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-yellow-300">500+</div>
+            <div class="text-sm text-white/70">Happy Clients</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual -->
+      <div class="w-full lg:w-1/2 relative">
+        <div class="relative animate-float">
+          <!-- Main card -->
+          <div class="glass-effect rounded-3xl p-8 max-w-md mx-auto transform hover:scale-105 transition-all duration-500">
+            <div class="space-y-6">
+              <!-- Header -->
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-blue-500 rounded-xl"></div>
+                  <div>
+                    <div class="font-semibold">Contract.pdf</div>
+                    <div class="text-sm text-white/70">2.1 MB • Just now</div>
+                  </div>
+                </div>
+                <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Progress bars -->
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between text-sm mb-2">
+                    <span>AI Analysis</span>
+                    <span class="text-green-400">Complete</span>
+                  </div>
+                  <div class="w-full bg-white/20 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full w-full"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2">
+                    <span>Risk Assessment</span>
+                    <span class="text-yellow-400">87%</span>
+                  </div>
+                  <div class="w-full bg-white/20 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full w-4/5"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2">
+                    <span>Compliance Check</span>
+                    <span class="text-blue-400">Processing...</span>
+                  </div>
+                  <div class="w-full bg-white/20 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-blue-400 to-purple-500 h-2 rounded-full w-2/3 animate-pulse"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tags -->
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-xs">Low Risk</span>
+                <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs">Standard Terms</span>
+                <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs">Auto-approved</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating elements -->
+          <div class="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-yellow-300 to-orange-400 rounded-2xl opacity-80 animate-float" style="animation-delay: 0.5s;"></div>
+          <div class="absolute -bottom-6 -left-6 w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-500 rounded-xl opacity-70 animate-float" style="animation-delay: 1s;"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Features Section -->
+    <section id="features" class="content-layer py-20 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h3 class="text-4xl font-bold mb-4">Why Choose Clause.ai?</h3>
+          <p class="text-xl text-white/80 max-w-2xl mx-auto">
+            Built for modern legal teams who demand efficiency, security, and intelligence in their workflow.
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="glass-effect rounded-2xl p-8 hover:bg-white/15 transition-all duration-300 transform hover:scale-105">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-500 rounded-xl mb-6 flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+              </svg>
+            </div>
+            <h4 class="text-xl font-semibold mb-3">AI-Powered Intelligence</h4>
+            <p class="text-white/80">Advanced machine learning algorithms analyze contracts for risks, opportunities, and compliance issues automatically.</p>
+          </div>
+
+          <div class="glass-effect rounded-2xl p-8 hover:bg-white/15 transition-all duration-300 transform hover:scale-105">
+            <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-blue-500 rounded-xl mb-6 flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+              </svg>
+            </div>
+            <h4 class="text-xl font-semibold mb-3">Enterprise Security</h4>
+            <p class="text-white/80">Bank-level encryption, SOC 2 compliance, and advanced access controls keep your sensitive data protected.</p>
+          </div>
+
+          <div class="glass-effect rounded-2xl p-8 hover:bg-white/15 transition-all duration-300 transform hover:scale-105">
+            <div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl mb-6 flex items-center justify-center">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+              </svg>
+            </div>
+            <h4 class="text-xl font-semibold mb-3">Team Collaboration</h4>
+            <p class="text-white/80">Real-time editing, commenting, and approval workflows streamline team collaboration on legal documents.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="content-layer text-center py-12 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div class="flex items-center space-x-2">
+            <div class="w-6 h-6 bg-gradient-to-br from-yellow-300 to-orange-400 rounded-lg"></div>
+            <span class="font-semibold">© 2025 Clause.ai</span>
+          </div>
+          <div class="text-sm text-white/70">
+            Built with Firebase & Tailwind CSS | Secured by industry-leading encryption
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

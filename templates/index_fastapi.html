@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG Legal Clause Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .main-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-group {
+            margin-bottom: 30px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #555;
+            font-size: 1.1rem;
+        }
+        
+        .query-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .query-input:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .generate-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .generate-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .results {
+            margin-top: 40px;
+            display: none;
+        }
+        
+        .results.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .clause {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .clause h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .clause-text {
+            color: #555;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .loading.show {
+            display: block;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error {
+            background: #fee;
+            color: #c33;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #c33;
+            display: none;
+        }
+        
+        .error.show {
+            display: block;
+        }
+        
+        .sources {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e8f4fd;
+            border-radius: 10px;
+            border-left: 4px solid #007acc;
+        }
+        
+        .sources h3 {
+            color: #007acc;
+            margin-bottom: 10px;
+        }
+        
+        .sources ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .sources li {
+            padding: 5px 0;
+            color: #555;
+            font-size: 0.9rem;
+        }
+        
+        .example-queries {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f0f8ff;
+            border-radius: 10px;
+            border-left: 4px solid #4a90e2;
+        }
+        
+        .example-queries h3 {
+            color: #4a90e2;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .example-item {
+            background: white;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid #e1e5e9;
+        }
+        
+        .example-item:hover {
+            background: #f8f9fa;
+            border-color: #4a90e2;
+            transform: translateX(5px);
+        }
+        
+        .copy-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.2s ease;
+        }
+        
+        .copy-btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚖️ RAG Legal Clause Generator</h1>
+            <p>Generate professional legal clauses using AI and contract analysis</p>
+        </div>
+        
+        <div class="main-content">
+            <form id="queryForm">
+                <div class="form-group">
+                    <label for="query">Describe the legal clause you need:</label>
+                    <textarea 
+                        id="query" 
+                        name="query" 
+                        class="query-input" 
+                        placeholder="e.g., Create a confidentiality clause for a software development agreement..."
+                        required
+                    ></textarea>
+                </div>
+                
+                <button type="submit" class="generate-btn" id="generateBtn">
+                    Generate Legal Clauses
+                </button>
+            </form>
+            
+            <div class="example-queries">
+                <h3>💡 Example Queries:</h3>
+                <div class="example-item" onclick="fillQuery('Create a confidentiality clause for a software development agreement')">
+                    Create a confidentiality clause for a software development agreement
+                </div>
+                <div class="example-item" onclick="fillQuery('Generate payment terms for consulting services')">
+                    Generate payment terms for consulting services
+                </div>
+                <div class="example-item" onclick="fillQuery('Draft a liability limitation clause')">
+                    Draft a liability limitation clause
+                </div>
+                <div class="example-item" onclick="fillQuery('Create termination clauses for employment contract')">
+                    Create termination clauses for employment contract
+                </div>
+            </div>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Generating legal clauses... This may take a moment.</p>
+            </div>
+            
+            <div class="error" id="error"></div>
+            
+            <div class="results" id="results">
+                <h2>Generated Legal Clauses</h2>
+                <div id="clausesContainer"></div>
+                <div class="sources" id="sources" style="display: none;">
+                    <h3>📄 Source Documents:</h3>
+                    <ul id="sourcesList"></ul>
+                </div>
+                <button class="copy-btn" id="copyAllBtn" onclick="copyAllClauses()">
+                    📋 Copy All Clauses
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let generatedClauses = [];
+
+        document.getElementById('queryForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const query = document.getElementById('query').value.trim();
+            if (!query) {
+                showError('Please enter a query');
+                return;
+            }
+            
+            const generateBtn = document.getElementById('generateBtn');
+            const loading = document.getElementById('loading');
+            const results = document.getElementById('results');
+            const error = document.getElementById('error');
+            
+            // Show loading, hide results and errors
+            loading.classList.add('show');
+            results.classList.remove('show');
+            error.classList.remove('show');
+            generateBtn.disabled = true;
+            
+            try {
+                const response = await fetch('/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ query: query })
+                });
+                
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.detail || 'Failed to generate clauses');
+                }
+                
+                displayResults(data);
+                
+            } catch (err) {
+                showError(err.message);
+            } finally {
+                loading.classList.remove('show');
+                generateBtn.disabled = false;
+            }
+        });
+        
+        function displayResults(data) {
+            const results = document.getElementById('results');
+            const clausesContainer = document.getElementById('clausesContainer');
+            const sources = document.getElementById('sources');
+            const sourcesList = document.getElementById('sourcesList');
+            
+            generatedClauses = data.clauses || [];
+            
+            // Clear previous results
+            clausesContainer.innerHTML = '';
+            sourcesList.innerHTML = '';
+            
+            // Display clauses
+            generatedClauses.forEach((clause, index) => {
+                const clauseDiv = document.createElement('div');
+                clauseDiv.className = 'clause';
+                clauseDiv.innerHTML = `
+                    <h3>Clause ${index + 1}</h3>
+                    <div class="clause-text">${clause}</div>
+                    <button class="copy-btn" onclick="copyClause(${index})" style="margin-top: 10px;">
+                        📋 Copy Clause ${index + 1}
+                    </button>
+                `;
+                clausesContainer.appendChild(clauseDiv);
+            });
+            
+            // Display sources if available
+            if (data.context_sources && data.context_sources.length > 0) {
+                data.context_sources.forEach(source => {
+                    if (source && source !== 'Unknown') {
+                        const li = document.createElement('li');
+                        li.textContent = source;
+                        sourcesList.appendChild(li);
+                    }
+                });
+                
+                if (sourcesList.children.length > 0) {
+                    sources.style.display = 'block';
+                }
+            }
+            
+            results.classList.add('show');
+        }
+        
+        function showError(message) {
+            const error = document.getElementById('error');
+            error.textContent = message;
+            error.classList.add('show');
+        }
+        
+        function fillQuery(exampleQuery) {
+            document.getElementById('query').value = exampleQuery;
+        }
+        
+        function copyClause(index) {
+            const clause = generatedClauses[index];
+            navigator.clipboard.writeText(clause).then(() => {
+                // Temporary feedback
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✓ Copied!';
+                btn.style.background = '#28a745';
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '#28a745';
+                }, 2000);
+            });
+        }
+        
+        function copyAllClauses() {
+            const allClauses = generatedClauses.map((clause, index) => 
+                `CLAUSE ${index + 1}:\n${clause}\n\n${'─'.repeat(50)}\n`
+            ).join('\n');
+            
+            navigator.clipboard.writeText(allClauses).then(() => {
+                const btn = document.getElementById('copyAllBtn');
+                const originalText = btn.textContent;
+                btn.textContent = '✓ All Clauses Copied!';
+                btn.style.background = '#28a745';
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '#28a745';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
