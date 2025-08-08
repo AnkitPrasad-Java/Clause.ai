@@ -15,6 +15,10 @@ This project is an AI-powered legal assistant that transforms plain English desc
 ---
 
 Ideal for automating legal workflows, enhancing contract accuracy, and reducing dependency on generic templates or manual legal drafting.
+<img width="930" height="774" alt="image" src="https://github.com/user-attachments/assets/df457745-b56b-439f-8625-ecdc897bfea1" />
+
 <img width="1919" height="874" alt="image" src="https://github.com/user-attachments/assets/7c0a2252-269c-4ea9-9382-ba35de0d2bf4" />
+
 <img width="1919" height="862" alt="image" src="https://github.com/user-attachments/assets/f23e3426-ac78-43e0-bb52-610ea11dc576" />
+
 <img width="1918" height="861" alt="image" src="https://github.com/user-attachments/assets/59c1d898-b57f-4453-9727-002371b716f3" />
