@@ -1,12 +1,20 @@
-# AI Legal Clause Generator with Risk Classification
+# 🧠 AI Legal Clause Generator & Risk Assessor
 
-In this project we basically let the user input a prompt and we generate a clause specific to the user prompt through a static dataset, it also classifies the generated as low/medium/high risk(Is it feasible according to the industry standards).
+This project is an AI-powered legal assistant that transforms plain English descriptions into formal legal clauses and evaluates their legal risk levels. Built using advanced language models and a Retrieval-Augmented Generation (RAG) pipeline, it helps startups, legal teams, and businesses create precise, risk-aware contractual content without requiring deep legal expertise.
 
-# Dataset
+---
 
-The dataset which was used is CUAD v1(Contract Understanding Atticus Dataset), the dataset consists of multiple contracts of different comapanies and the contracts are of multiple types.
-The contracts in the dataset are in .txt and .pdf formats.
+## 🚀 Key Features
 
-# Flow
-We created a vector database of the dataset through FAISS and applied RAG on the vector database and gemini to generate a clause but the generation of clause was done through a static data and we also wanted real time data so we applied Serper API to let gemini fetch real time data through the internet. The generated clause was classified on its type and risk.
-We also added a feature called "Contract Summarizer" which allowed the user to input any legal contract as PDF file and the contract will be summarized in simpler terms and a Text-to-Speech was also applied on the summarized text.
+- 📝 **Clause Generation**: Converts natural language into professional legal clauses.
+- ⚖️ **Risk Assessment**: Classifies clauses based on legal risk (High, Medium, Low).
+- 🔍 **RAG-based Intelligence**: Leverages retrieval over relevant legal data to enhance generation accuracy.
+- 📄 **PDF Export**: Generates downloadable PDF documents with the final clauses.
+- 🔐 **Secure Firebase Integration**: Ensures user data and clause storage are protected.
+
+---
+
+Ideal for automating legal workflows, enhancing contract accuracy, and reducing dependency on generic templates or manual legal drafting.
+<img width="1919" height="874" alt="image" src="https://github.com/user-attachments/assets/7c0a2252-269c-4ea9-9382-ba35de0d2bf4" />
+<img width="1919" height="862" alt="image" src="https://github.com/user-attachments/assets/f23e3426-ac78-43e0-bb52-610ea11dc576" />
+<img width="1918" height="861" alt="image" src="https://github.com/user-attachments/assets/59c1d898-b57f-4453-9727-002371b716f3" />
