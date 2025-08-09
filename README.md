@@ -34,8 +34,7 @@ An advanced AI-powered legal assistant transforming plain English into precise l
 
 ## Project Demo PDF
 Prompt:Clause for granting a tester limited rights to use software for internal testing only, with restrictions, confidentiality, IP ownership, and no warranties.
-[📄 View Sample Clause PDF]((https://github.com/AnkitPrasad-Java/Clause.ai/blob/main/SAMPLE.pdf))
-
+[📄 View Sample Clause PDF](https://github.com/AnkitPrasad-Java/Clause.ai/blob/main/SAMPLE.pdf)
 ---
 
 ## 📚 References  
