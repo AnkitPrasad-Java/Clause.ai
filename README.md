@@ -40,12 +40,10 @@ An advanced AI-powered legal assistant transforming plain English into precise l
 
 ## 📚 References  
 
-This project draws on insights and data from the following research works:  
+This project refers to the following works:  
 
-- **Liang et al., 2021** – *Lawformer: A Pre-trained Language Model for Chinese Legal Long Documents*  
-  [[Paper PDF](https://arxiv.org/pdf/2103.06268)] [[Semantic Scholar](https://api.semanticscholar.org/CorpusId:240288786)]  
-
-Please cite these works appropriately if you use related models, datasets, or methodology from this project.  
+- [[Semantic Scholar](https://api.semanticscholar.org/CorpusId:240288786)]  
+- CUAD DATASET: [[arXiv PDF](https://arxiv.org/pdf/2103.06268)]  
 
 ---
 
